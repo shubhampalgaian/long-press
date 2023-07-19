@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Long-press</title>
+    <script src="long-press.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      #main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        background-color: palegreen;
+      }
+
+      .child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 19%;
+        width: 80%;
+        border: 1px solid black;
+        margin: 1%;
+      }
+
+      @keyframes jiggle {
+        0% {
+          transform: rotate(-1deg);
+        }
+        50% {
+          transform: rotate(1deg);
+        }
+      }
+
+      .child[data-editing="true"] {
+        animation: jiggle 0.2s infinite;
+        border: 1px solid #aaa;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.85);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div class="child">hey i'm child</div>
+      <div class="child">hey i'm child</div>
+      <div class="child">hey i'm child</div>
+      <div class="child">hey i'm child</div>
+      <div class="child">hey i'm child</div>
+    </div>
+
+    <script>
+      const main_ele = document.getElementById("main");
+
+      document.addEventListener("long-press", function (e) {
+        e.target.setAttribute("data-editing", "true");
+      });
+    </script>
+  </body>
+</html>
